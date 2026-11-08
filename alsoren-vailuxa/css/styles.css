@@ -1,0 +1,541 @@
+/* 1. VARIABLES GLOBALES */
+
+:root {
+    color-scheme: dark;
+
+    --color-background: #0B1020;
+    --color-surface: #151D32;
+    --color-surface-light: #1B2740;
+
+    --color-primary: #3987FF;
+    --color-secondary: #36D9D0;
+    --color-accent: #8B72FF;
+
+    --color-text: #E7ECF5;
+    --color-text-muted: #8D9BB5;
+
+    --color-border: rgba(130, 160, 210, 0.16);
+
+    --font-main: "Segoe UI", Arial, sans-serif;
+
+    --container-width: 1120px;
+}
+
+
+/* 2. REINICIO Y CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    min-width: 320px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(100% - 48px, var(--container-width));
+    margin-inline: auto;
+}
+
+
+/* 3. ACCESIBILIDAD */
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 100;
+    padding: 12px 18px;
+    background: var(--color-secondary);
+    color: var(--color-background);
+    border-radius: 8px;
+}
+
+.skip-link:focus {
+    top: 16px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 5px;
+}
+
+
+/* 4. ENCABEZADO Y NAVEGACIÓN */
+
+.site-header {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(11, 16, 32, 0.82);
+}
+
+.header-content {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.brand span {
+    color: var(--color-secondary);
+    text-shadow: 0 0 18px rgba(54, 217, 208, 0.55);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.main-nav a {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: color 0.25s ease;
+}
+
+.main-nav a:hover {
+    color: var(--color-secondary);
+}
+
+.header-indicator {
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+}
+
+
+/* 5. PRESENTACIÓN PRINCIPAL */
+
+.hero {
+    min-height: 590px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-block: 100px;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 480px;
+    height: 480px;
+    top: 40px;
+    right: 2%;
+    background: radial-gradient(
+        circle,
+        rgba(57, 135, 255, 0.19),
+        rgba(54, 217, 208, 0.08) 38%,
+        rgba(139, 114, 255, 0.06) 58%,
+        transparent 72%
+    );
+    filter: blur(30px);
+}
+
+.hero-content {
+    max-width: 680px;
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-secondary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    box-shadow: 0 0 12px var(--color-secondary);
+}
+
+.hero h1 {
+    margin-top: 24px;
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    line-height: 1.05;
+    letter-spacing: -4px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    display: block;
+    background: linear-gradient(
+        100deg,
+        var(--color-secondary),
+        var(--color-primary),
+        var(--color-accent)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    max-width: 600px;
+    margin-top: 28px;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.hero-description {
+    max-width: 580px;
+    margin-top: 16px;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 12px 20px;
+    border: 1px solid rgba(54, 217, 208, 0.4);
+    border-radius: 8px;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    transition: 0.25s ease;
+}
+
+.hero-link:hover {
+    background: rgba(54, 217, 208, 0.1);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 25px rgba(54, 217, 208, 0.12);
+}
+
+.hero-link span {
+    font-size: 1.1rem;
+}
+
+
+/* 6. ELEMENTOS GEOMÉTRICOS */
+
+.hero-decoration {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px solid rgba(54, 217, 208, 0.25);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 150px;
+    height: 150px;
+    border-color: rgba(54, 217, 208, 0.5);
+    box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+}
+
+.orbit-two {
+    width: 245px;
+    height: 245px;
+    transform: rotateX(65deg);
+    border-color: rgba(57, 135, 255, 0.55);
+}
+
+.orbit-three {
+    width: 320px;
+    height: 320px;
+    transform: rotateY(65deg);
+    border-color: rgba(139, 114, 255, 0.45);
+}
+
+.core {
+    width: 92px;
+    height: 92px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(54, 217, 208, 0.65);
+    border-radius: 24px;
+    background: linear-gradient(
+        135deg,
+        rgba(54, 217, 208, 0.12),
+        rgba(57, 135, 255, 0.12)
+    );
+    box-shadow:
+        0 0 30px rgba(54, 217, 208, 0.18),
+        inset 0 0 25px rgba(57, 135, 255, 0.12);
+    transform: rotate(45deg);
+}
+
+.core span {
+    color: var(--color-text);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    transform: rotate(-45deg);
+}
+
+.hero-index {
+    position: absolute;
+    bottom: 25px;
+    right: 0;
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+}
+
+
+/* 7. SECCIÓN DE PROYECTOS */
+
+.projects-section {
+    padding-block: 100px;
+    border-top: 1px solid var(--color-border);
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.section-heading h2,
+.about-section h2 {
+    margin-top: 12px;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+}
+
+.section-heading h2 span,
+.about-section h2 span {
+    color: var(--color-secondary);
+}
+
+.section-heading > p {
+    max-width: 330px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+
+/* 8. ESTADO SIN PROYECTOS */
+
+.projects-empty {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: linear-gradient(
+        135deg,
+        rgba(21, 29, 50, 0.8),
+        rgba(15, 24, 43, 0.7)
+    );
+}
+
+.empty-symbol {
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-shadow: 0 0 25px rgba(54, 217, 208, 0.5);
+}
+
+.projects-empty h3 {
+    margin-top: 14px;
+    font-size: 1.25rem;
+}
+
+.projects-empty p {
+    max-width: 420px;
+    margin-top: 8px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.empty-label {
+    margin-top: 25px;
+    color: var(--color-primary);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+}
+
+
+/* 9. ACERCA DE */
+
+.about-section {
+    padding-block: 90px;
+    border-top: 1px solid var(--color-border);
+}
+
+.about-section p {
+    max-width: 680px;
+    margin-top: 20px;
+    color: var(--color-text-muted);
+    line-height: 1.9;
+}
+
+
+/* 10. PIE DE PÁGINA */
+
+.site-footer {
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.footer-content p,
+.footer-signature {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+}
+
+.footer-signature {
+    letter-spacing: 1px;
+}
+
+
+/* 11. DISEÑO RESPONSIVE */
+
+@media (max-width: 850px) {
+
+    .hero-decoration {
+        right: -100px;
+        opacity: 0.35;
+    }
+
+    .hero-content {
+        max-width: 620px;
+    }
+
+    .header-indicator {
+        display: none;
+    }
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-block: 25px;
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .container {
+        width: min(100% - 36px, var(--container-width));
+    }
+
+    .header-content {
+        min-height: 68px;
+    }
+
+    .main-nav {
+        gap: 18px;
+    }
+
+    .main-nav a {
+        font-size: 0.8rem;
+    }
+
+    .hero {
+        min-height: 580px;
+        padding-block: 80px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-decoration {
+        width: 260px;
+        height: 260px;
+        right: -115px;
+        top: 65%;
+        opacity: 0.2;
+    }
+
+    .hero-index {
+        bottom: 15px;
+    }
+
+    .projects-section,
+    .about-section {
+        padding-block: 70px;
+    }
+
+    .projects-empty {
+        padding: 25px 18px;
+    }
+
+}
+
+
+/* 12. RESPETO A PREFERENCIAS DE MOVIMIENTO */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}
