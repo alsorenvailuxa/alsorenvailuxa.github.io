@@ -272,27 +272,100 @@ a:focus-visible {
     position: absolute;
     border: 1px solid rgba(54, 217, 208, 0.25);
     border-radius: 50%;
+    animation: none;
+    animation-duration: 18s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 .orbit-one {
-    width: 150px;
-    height: 150px;
-    border-color: rgba(54, 217, 208, 0.5);
-    box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+    animation-name: orbit-cycle-one;
 }
 
 .orbit-two {
-    width: 245px;
-    height: 245px;
-    transform: rotateX(65deg);
-    border-color: rgba(57, 135, 255, 0.55);
+    animation-name: orbit-cycle-two;
 }
 
 .orbit-three {
-    width: 320px;
-    height: 320px;
-    transform: rotateY(65deg);
-    border-color: rgba(139, 114, 255, 0.45);
+    animation-name: orbit-cycle-three;
+}
+
+@keyframes orbit-cycle-one {
+    0%, 100% {
+        width: 150px;
+        height: 150px;
+        transform: none;
+        border-color: rgba(54, 217, 208, 0.5);
+        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+    }
+
+    33.333% {
+        width: 245px;
+        height: 245px;
+        transform: rotateX(65deg);
+        border-color: rgba(57, 135, 255, 0.55);
+        box-shadow: none;
+    }
+
+    66.666% {
+        width: 320px;
+        height: 320px;
+        transform: rotateY(65deg);
+        border-color: rgba(139, 114, 255, 0.45);
+        box-shadow: none;
+    }
+}
+
+@keyframes orbit-cycle-two {
+    0%, 100% {
+        width: 245px;
+        height: 245px;
+        transform: rotateX(65deg);
+        border-color: rgba(57, 135, 255, 0.55);
+        box-shadow: none;
+    }
+
+    33.333% {
+        width: 320px;
+        height: 320px;
+        transform: rotateY(65deg);
+        border-color: rgba(139, 114, 255, 0.45);
+        box-shadow: none;
+    }
+
+    66.666% {
+        width: 150px;
+        height: 150px;
+        transform: none;
+        border-color: rgba(54, 217, 208, 0.5);
+        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+    }
+}
+
+@keyframes orbit-cycle-three {
+    0%, 100% {
+        width: 320px;
+        height: 320px;
+        transform: rotateY(65deg);
+        border-color: rgba(139, 114, 255, 0.45);
+        box-shadow: none;
+    }
+
+    33.333% {
+        width: 150px;
+        height: 150px;
+        transform: none;
+        border-color: rgba(54, 217, 208, 0.5);
+        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+    }
+
+    66.666% {
+        width: 245px;
+        height: 245px;
+        transform: rotateX(65deg);
+        border-color: rgba(57, 135, 255, 0.55);
+        box-shadow: none;
+    }
 }
 
 .core {
