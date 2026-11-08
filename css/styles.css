@@ -268,128 +268,134 @@ a:focus-visible {
     opacity: 0.85;
 }
 
+
+/* CONFIGURACIÓN GENERAL */
+
 .orbit {
     position: absolute;
     border: 1px solid rgba(54, 217, 208, 0.25);
     border-radius: 50%;
-    animation: none;
-    animation-duration: 12s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+
+    animation-duration: 12s, 12s;
+    animation-timing-function: linear, steps(1, end);
+    animation-iteration-count: infinite, infinite;
 }
+
+/* ÓRBITA UNO: CIAN → AZUL → VIOLETA */
 
 .orbit-one {
-    animation-name: orbit-cycle-one;
+    --size-a: 150px;
+    --size-b: 245px;
+    --size-c: 320px;
+
+    --color-a: rgba(54, 217, 208, 0.5);
+    --color-b: rgba(57, 135, 255, 0.55);
+    --color-c: rgba(139, 114, 255, 0.45);
+
+    --glow-a: 0 0 30px rgba(54, 217, 208, 0.08);
+    --glow-b: none;
+    --glow-c: none;
+
+    --transform-a: none;
+    --transform-b: rotateX(65deg);
+    --transform-c: rotateY(65deg);
+
+    animation-name: orbit-appearance, orbit-orientation;
 }
+
+/* ÓRBITA DOS: AZUL → VIOLETA → CIAN */
 
 .orbit-two {
-    animation-name: orbit-cycle-two;
+    --size-a: 245px;
+    --size-b: 320px;
+    --size-c: 150px;
+
+    --color-a: rgba(57, 135, 255, 0.55);
+    --color-b: rgba(139, 114, 255, 0.45);
+    --color-c: rgba(54, 217, 208, 0.5);
+
+    --glow-a: none;
+    --glow-b: none;
+    --glow-c: 0 0 30px rgba(54, 217, 208, 0.08);
+
+    --transform-a: rotateX(65deg);
+    --transform-b: rotateY(65deg);
+    --transform-c: none;
+
+    animation-name: orbit-appearance, orbit-orientation;
 }
+
+/* ÓRBITA TRES: VIOLETA → CIAN → AZUL */
 
 .orbit-three {
-    animation-name: orbit-cycle-three;
+    --size-a: 320px;
+    --size-b: 150px;
+    --size-c: 245px;
+
+    --color-a: rgba(139, 114, 255, 0.45);
+    --color-b: rgba(54, 217, 208, 0.5);
+    --color-c: rgba(57, 135, 255, 0.55);
+
+    --glow-a: none;
+    --glow-b: 0 0 30px rgba(54, 217, 208, 0.08);
+    --glow-c: none;
+
+    --transform-a: rotateY(65deg);
+    --transform-b: none;
+    --transform-c: rotateX(65deg);
+
+    animation-name: orbit-appearance, orbit-orientation;
 }
 
+/* ANIMACIÓN SUAVE DE TAMAÑO Y COLOR */
 
-@keyframes orbit-cycle-one {
-    0%, 32% {
-        width: 150px;
-        height: 150px;
-        transform: none;
-        border-color: rgba(54, 217, 208, 0.5);
-        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+@keyframes orbit-appearance {
+    0% {
+        width: var(--size-a);
+        height: var(--size-a);
+        border-color: var(--color-a);
+        box-shadow: var(--glow-a);
     }
 
-    33.333%, 65.333% {
-        width: 245px;
-        height: 245px;
-        transform: rotateX(65deg);
-        border-color: rgba(57, 135, 255, 0.55);
-        box-shadow: none;
+    33.333% {
+        width: var(--size-b);
+        height: var(--size-b);
+        border-color: var(--color-b);
+        box-shadow: var(--glow-b);
     }
 
-    66.666%, 98.666% {
-        width: 320px;
-        height: 320px;
-        transform: rotateY(65deg);
-        border-color: rgba(139, 114, 255, 0.45);
-        box-shadow: none;
+    66.666% {
+        width: var(--size-c);
+        height: var(--size-c);
+        border-color: var(--color-c);
+        box-shadow: var(--glow-c);
     }
 
     100% {
-        width: 150px;
-        height: 150px;
-        transform: none;
-        border-color: rgba(54, 217, 208, 0.5);
-        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
+        width: var(--size-a);
+        height: var(--size-a);
+        border-color: var(--color-a);
+        box-shadow: var(--glow-a);
     }
 }
 
-@keyframes orbit-cycle-two {
-    0%, 32% {
-        width: 245px;
-        height: 245px;
-        transform: rotateX(65deg);
-        border-color: rgba(57, 135, 255, 0.55);
-        box-shadow: none;
+/* CAMBIO DISCRETO DE ORIENTACIÓN */
+
+@keyframes orbit-orientation {
+    0% {
+        transform: var(--transform-a);
     }
 
-    33.333%, 65.333% {
-        width: 320px;
-        height: 320px;
-        transform: rotateY(65deg);
-        border-color: rgba(139, 114, 255, 0.45);
-        box-shadow: none;
+    33.333% {
+        transform: var(--transform-b);
     }
 
-    66.666%, 98.666% {
-        width: 150px;
-        height: 150px;
-        transform: none;
-        border-color: rgba(54, 217, 208, 0.5);
-        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
-    }
-    100% {
-        width: 245px;
-        height: 245px;
-        transform: rotateX(65deg);
-        border-color: rgba(57, 135, 255, 0.55);
-        box-shadow: none;
-    }
-}
-
-
-@keyframes orbit-cycle-three {
-    0%, 32% {
-        width: 320px;
-        height: 320px;
-        transform: rotateY(65deg);
-        border-color: rgba(139, 114, 255, 0.45);
-        box-shadow: none;
-    }
-
-    33.333%, 65.333% {
-        width: 150px;
-        height: 150px;
-        transform: none;
-        border-color: rgba(54, 217, 208, 0.5);
-        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
-    }
-
-    66.666%, 98.666% {
-        width: 245px;
-        height: 245px;
-        transform: rotateX(65deg);
-        border-color: rgba(57, 135, 255, 0.55);
-        box-shadow: none;
+    66.666% {
+        transform: var(--transform-c);
     }
 
     100% {
-        width: 320px;
-        height: 320px;
-        transform: rotateY(65deg);
-        border-color: rgba(139, 114, 255, 0.45);
-        box-shadow: none;
+        transform: var(--transform-a);
     }
 }
 
