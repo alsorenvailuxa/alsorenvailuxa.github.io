@@ -1,4 +1,6 @@
-/* 1. VARIABLES GLOBALES */
+/* ==================================================
+   1. VARIABLES GLOBALES
+   ================================================== */
 
 :root {
     color-scheme: dark;
@@ -22,7 +24,9 @@
 }
 
 
-/* 2. REINICIO Y CONFIGURACIÓN GENERAL */
+/* ==================================================
+   2. REINICIO Y CONFIGURACIÓN GENERAL
+   ================================================== */
 
 * {
     margin: 0;
@@ -55,7 +59,9 @@ a {
 }
 
 
-/* 3. ACCESIBILIDAD */
+/* ==================================================
+   3. ACCESIBILIDAD
+   ================================================== */
 
 .skip-link {
     position: absolute;
@@ -66,6 +72,7 @@ a {
     background: var(--color-secondary);
     color: var(--color-background);
     border-radius: 8px;
+    font-weight: 700;
 }
 
 .skip-link:focus {
@@ -78,7 +85,9 @@ a:focus-visible {
 }
 
 
-/* 4. ENCABEZADO Y NAVEGACIÓN */
+/* ==================================================
+   4. ENCABEZADO Y NAVEGACIÓN
+   ================================================== */
 
 .site-header {
     position: relative;
@@ -129,7 +138,9 @@ a:focus-visible {
 }
 
 
-/* 5. PRESENTACIÓN PRINCIPAL */
+/* ==================================================
+   5. PRESENTACIÓN PRINCIPAL
+   ================================================== */
 
 .hero {
     min-height: 590px;
@@ -148,13 +159,11 @@ a:focus-visible {
     height: 480px;
     top: 40px;
     right: 2%;
-    background: radial-gradient(
-        circle,
-        rgba(57, 135, 255, 0.19),
-        rgba(54, 217, 208, 0.08) 38%,
-        rgba(139, 114, 255, 0.06) 58%,
-        transparent 72%
-    );
+    background: radial-gradient(circle,
+            rgba(57, 135, 255, 0.19),
+            rgba(54, 217, 208, 0.08) 38%,
+            rgba(139, 114, 255, 0.06) 58%,
+            transparent 72%);
     filter: blur(30px);
 }
 
@@ -177,6 +186,7 @@ a:focus-visible {
 .status-dot {
     width: 7px;
     height: 7px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--color-secondary);
     box-shadow: 0 0 12px var(--color-secondary);
@@ -192,12 +202,10 @@ a:focus-visible {
 
 .hero h1 span {
     display: block;
-    background: linear-gradient(
-        100deg,
-        var(--color-secondary),
-        var(--color-primary),
-        var(--color-accent)
-    );
+    background: linear-gradient(100deg,
+            var(--color-secondary),
+            var(--color-primary),
+            var(--color-accent));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -243,7 +251,9 @@ a:focus-visible {
 }
 
 
-/* 6. ELEMENTOS GEOMÉTRICOS */
+/* ==================================================
+   6. ELEMENTOS GEOMÉTRICOS
+   ================================================== */
 
 .hero-decoration {
     position: absolute;
@@ -292,11 +302,9 @@ a:focus-visible {
     place-items: center;
     border: 1px solid rgba(54, 217, 208, 0.65);
     border-radius: 24px;
-    background: linear-gradient(
-        135deg,
-        rgba(54, 217, 208, 0.12),
-        rgba(57, 135, 255, 0.12)
-    );
+    background: linear-gradient(135deg,
+            rgba(54, 217, 208, 0.12),
+            rgba(57, 135, 255, 0.12));
     box-shadow:
         0 0 30px rgba(54, 217, 208, 0.18),
         inset 0 0 25px rgba(57, 135, 255, 0.12);
@@ -321,7 +329,9 @@ a:focus-visible {
 }
 
 
-/* 7. SECCIÓN DE PROYECTOS */
+/* ==================================================
+   7. SECCIÓN DE PROYECTOS
+   ================================================== */
 
 .projects-section {
     padding-block: 100px;
@@ -348,14 +358,16 @@ a:focus-visible {
     color: var(--color-secondary);
 }
 
-.section-heading > p {
+.section-heading>p {
     max-width: 330px;
     color: var(--color-text-muted);
     font-size: 0.9rem;
 }
 
 
-/* 8. ESTADO SIN PROYECTOS */
+/* ==================================================
+   8. ESTADO SIN PROYECTOS
+   ================================================== */
 
 .projects-empty {
     min-height: 260px;
@@ -367,11 +379,9 @@ a:focus-visible {
     text-align: center;
     border: 1px solid var(--color-border);
     border-radius: 16px;
-    background: linear-gradient(
-        135deg,
-        rgba(21, 29, 50, 0.8),
-        rgba(15, 24, 43, 0.7)
-    );
+    background: linear-gradient(135deg,
+            rgba(21, 29, 50, 0.8),
+            rgba(15, 24, 43, 0.7));
 }
 
 .empty-symbol {
@@ -400,7 +410,9 @@ a:focus-visible {
 }
 
 
-/* 9. ACERCA DE */
+/* ==================================================
+   9. SECCIÓN SOBRE MÍ
+   ================================================== */
 
 .about-section {
     padding-block: 90px;
@@ -415,7 +427,9 @@ a:focus-visible {
 }
 
 
-/* 10. PIE DE PÁGINA */
+/* ==================================================
+   10. PIE DE PÁGINA
+   ================================================== */
 
 .site-footer {
     border-top: 1px solid var(--color-border);
@@ -440,7 +454,9 @@ a:focus-visible {
 }
 
 
-/* 11. DISEÑO RESPONSIVE */
+/* ==================================================
+   11. DISEÑO ADAPTABLE A DIFERENTES PANTALLAS
+   ================================================== */
 
 @media (max-width: 850px) {
 
@@ -498,6 +514,11 @@ a:focus-visible {
         letter-spacing: -2px;
     }
 
+    .eyebrow {
+        letter-spacing: 1.3px;
+        font-size: 0.65rem;
+    }
+
     .hero-decoration {
         width: 260px;
         height: 260px;
@@ -519,10 +540,17 @@ a:focus-visible {
         padding: 25px 18px;
     }
 
+    .empty-label {
+        font-size: 0.6rem;
+        letter-spacing: 1.3px;
+    }
+
 }
 
 
-/* 12. RESPETO A PREFERENCIAS DE MOVIMIENTO */
+/* ==================================================
+   12. RESPETO A LAS PREFERENCIAS DE MOVIMIENTO
+   ================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
