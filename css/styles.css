@@ -256,171 +256,89 @@ a:focus-visible {
    ================================================== */
 
 .hero-decoration {
-    position: absolute;
-    width: 360px;
-    height: 360px;
-    right: 4%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-    opacity: 0.85;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; /* Vital para que las rotaciones 3D se vean bien */
 }
-
-
-/* CONFIGURACIÓN GENERAL */
 
 .orbit {
     position: absolute;
-    border: 1px solid rgba(54, 217, 208, 0.25);
     border-radius: 50%;
-
-    animation-duration: 12s, 12s;
-    animation-timing-function: linear, steps(1, end);
-    animation-iteration-count: infinite, infinite;
+    /* Aplicamos la misma animación de 8 segundos en bucle infinito (linear) */
+    animation: rotarYTransformar 8s infinite linear;
 }
 
-/* ÓRBITA UNO: CIAN → AZUL → VIOLETA */
+/* 
+  Definimos los estados iniciales de cada órbita desfasados en el tiempo (% de la animación) 
+  para que sigan el ciclo exacto: 1 -> 2 -> 3 -> 1
+*/
 
 .orbit-one {
-    --size-a: 150px;
-    --size-b: 245px;
-    --size-c: 320px;
-
-    --color-a: rgba(54, 217, 208, 0.5);
-    --color-b: rgba(57, 135, 255, 0.55);
-    --color-c: rgba(139, 114, 255, 0.45);
-
-    --glow-a: 0 0 30px rgba(54, 217, 208, 0.08);
-    --glow-b: none;
-    --glow-c: none;
-
-    --transform-a: none;
-    --transform-b: rotateX(65deg);
-    --transform-c: rotateY(65deg);
-
-    animation-name: orbit-appearance, orbit-orientation;
+    animation-delay: 0s;
 }
-
-/* ÓRBITA DOS: AZUL → VIOLETA → CIAN */
 
 .orbit-two {
-    --size-a: 245px;
-    --size-b: 320px;
-    --size-c: 150px;
-
-    --color-a: rgba(57, 135, 255, 0.55);
-    --color-b: rgba(139, 114, 255, 0.45);
-    --color-c: rgba(54, 217, 208, 0.5);
-
-    --glow-a: none;
-    --glow-b: none;
-    --glow-c: 0 0 30px rgba(54, 217, 208, 0.08);
-
-    --transform-a: rotateX(65deg);
-    --transform-b: rotateY(65deg);
-    --transform-c: none;
-
-    animation-name: orbit-appearance, orbit-orientation;
+    animation-delay: -2.66s; /* Desfase de 1/3 del tiempo total */
 }
-
-/* ÓRBITA TRES: VIOLETA → CIAN → AZUL */
 
 .orbit-three {
-    --size-a: 320px;
-    --size-b: 150px;
-    --size-c: 245px;
-
-    --color-a: rgba(139, 114, 255, 0.45);
-    --color-b: rgba(54, 217, 208, 0.5);
-    --color-c: rgba(57, 135, 255, 0.55);
-
-    --glow-a: none;
-    --glow-b: 0 0 30px rgba(54, 217, 208, 0.08);
-    --glow-c: none;
-
-    --transform-a: rotateY(65deg);
-    --transform-b: none;
-    --transform-c: rotateX(65deg);
-
-    animation-name: orbit-appearance, orbit-orientation;
+    animation-delay: -5.33s; /* Desfase de 2/3 del tiempo total */
 }
 
-/* ANIMACIÓN SUAVE DE TAMAÑO Y COLOR */
-
-@keyframes orbit-appearance {
+/* Animación unificada que cambia tamaño, rotación 3D y colores simultáneamente */
+@keyframes rotarYTransformar {
     0% {
-        width: var(--size-a);
-        height: var(--size-a);
-        border-color: var(--color-a);
-        box-shadow: var(--glow-a);
+        width: 150px;
+        height: 150px;
+        transform: rotate(0deg) rotateX(0deg) rotateY(0deg);
+        border-color: rgba(54, 217, 208, 0.5);
+        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
     }
-
-    33.333% {
-        width: var(--size-b);
-        height: var(--size-b);
-        border-color: var(--color-b);
-        box-shadow: var(--glow-b);
+    33.33% {
+        width: 245px;
+        height: 245px;
+        transform: rotate(120deg) rotateX(65deg) rotateY(0deg);
+        border-color: rgba(57, 135, 255, 0.55);
+        box-shadow: 0 0 0px transparent;
     }
-
-    66.666% {
-        width: var(--size-c);
-        height: var(--size-c);
-        border-color: var(--color-c);
-        box-shadow: var(--glow-c);
+    66.66% {
+        width: 320px;
+        height: 320px;
+        transform: rotate(240deg) rotateX(0deg) rotateY(65deg);
+        border-color: rgba(139, 114, 255, 0.45);
+        box-shadow: 0 0 0px transparent;
     }
-
     100% {
-        width: var(--size-a);
-        height: var(--size-a);
-        border-color: var(--color-a);
-        box-shadow: var(--glow-a);
+        width: 150px;
+        height: 150px;
+        transform: rotate(360deg) rotateX(0deg) rotateY(0deg);
+        border-color: rgba(54, 217, 208, 0.5);
+        box-shadow: 0 0 30px rgba(54, 217, 208, 0.08);
     }
 }
 
-/* CAMBIO DISCRETO DE ORIENTACIÓN */
-
-@keyframes orbit-orientation {
-    0% {
-        transform: var(--transform-a);
-    }
-
-    33.333% {
-        transform: var(--transform-b);
-    }
-
-    66.666% {
-        transform: var(--transform-c);
-    }
-
-    100% {
-        transform: var(--transform-a);
-    }
-}
-
+/* Estilos base del núcleo (ROMBO + AVX) */
 .core {
-    width: 92px;
-    height: 92px;
-    display: grid;
-    place-items: center;
-    border: 1px solid rgba(54, 217, 208, 0.65);
-    border-radius: 24px;
-    background: linear-gradient(135deg,
-            rgba(54, 217, 208, 0.12),
-            rgba(57, 135, 255, 0.12));
-    box-shadow:
-        0 0 30px rgba(54, 217, 208, 0.18),
-        inset 0 0 25px rgba(57, 135, 255, 0.12);
-    transform: rotate(45deg);
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: rgba(54, 217, 208, 0.1);
+    transform: rotate(45deg); /* Esto convierte el cuadrado en rombo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(54, 217, 208, 0.4);
 }
 
 .core span {
-    color: var(--color-text);
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: -2px;
-    transform: rotate(-45deg);
+    transform: rotate(-45deg); /* Endereza el texto para que no quede inclinado por el rombo */
+    color: #fff;
+    font-weight: bold;
+    font-family: sans-serif;
 }
 
 .hero-index {
